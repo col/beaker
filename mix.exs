@@ -7,7 +7,6 @@ defmodule Beaker.Mixfile do
       version: "1.2.0",
       elixir: "~> 1.2",
       elixirc_paths: elixirc_paths(Mix.env),
-      compilers: compilers(Mix.env),
       name: "beaker",
       description: description,
       package: package,
@@ -34,21 +33,6 @@ defmodule Beaker.Mixfile do
     [:logger]
   end
 
-  # Need phoenix compiler to compile our views.
-  defp compilers(:test) do
-    [:phoenix | compilers]
-  end
-  defp compilers(_) do
-    if Code.ensure_loaded?(Phoenix.HTML) do
-      [:phoenix | compilers]
-    else
-      compilers
-    end
-  end
-  defp compilers do
-    Mix.compilers
-  end
-
   defp deps do
     [
       {:bureaucrat, "~> 0.1.2"},
@@ -56,10 +40,7 @@ defmodule Beaker.Mixfile do
       {:ecto, "~> 1.1", optional: true},
       {:ex_doc, "~> 0.11", only: :docs},
       {:inch_ex, "~> 0.5", only: :docs},
-      {:mix_test_watch, "~> 0.2", only: :dev},
-      {:phoenix, "~> 1.1", optional: true},
-      {:phoenix_ecto, "~> 2.0", only: :test},
-      {:phoenix_html, "~> 2.3", only: :test},
+      {:mix_test_watch, "~> 0.2", only: :dev}
     ]
   end
 
