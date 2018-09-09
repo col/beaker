@@ -8,12 +8,12 @@ defmodule Beaker.Mixfile do
       elixir: "~> 1.2",
       elixirc_paths: elixirc_paths(Mix.env),
       name: "beaker",
-      description: description,
-      package: package,
+      description: description(),
+      package: package(),
       source_url: "https://github.com/hahuang65/beaker",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps
+      deps: deps()
     ]
   end
 
@@ -28,7 +28,7 @@ defmodule Beaker.Mixfile do
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_),     do: ["lib"]
 
-  defp apps(_), do: apps
+  defp apps(_), do: apps()
   defp apps do
     [:logger]
   end
